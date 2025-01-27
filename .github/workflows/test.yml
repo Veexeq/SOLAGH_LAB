@@ -1,7 +1,10 @@
 name: test
 on: push
 jobs: 
-  job:
-    runs-on: ubuntu-latest
+  python_1:
+    strategy: 
+      matrix: 
+        platform: [ubuntu-latest, macos-latest, windows-latest] 
+    runs-on: ${{matrix.platform}}
     steps:
-      - run: echo "Hello"
+      - run: python -c "import platform; print(platform.system())"
